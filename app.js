@@ -2,6 +2,7 @@ import express from 'express'
 import exphbs from 'express-handlebars'
 import mongoose from 'mongoose'
 import Restaurants from './models/restaurants.js'
+import methodOverride from  'method-override'
 
 const app = express()
 const port = 3000
@@ -19,6 +20,7 @@ app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true}))
+app.use(methodOverride('_method'))
 
 // view all restaurants (GET '/')
 app.get('/', (req, res) => {
@@ -57,7 +59,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
   .catch(error => console.log(error))
 })
 // update detail info after edit
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurants.findByIdAndUpdate(id, req.body)
   .then(() => res.redirect('/'))
@@ -65,7 +67,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 }) 
 
 // delete a certain restaurant
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurants.findByIdAndDelete(id, req.body)
   .then(() => res.redirect('/'))
