@@ -2,9 +2,9 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="d-flex align-items-center">
+      <h4 class="mb-2">尋找餐廳：</h4>
+      <div class="d-flex align-items-center">
+        <form action="/search">
           <div class="input-group">
             <input
               type="text"
@@ -21,8 +21,10 @@
                 ></i></button>
             </div>
           </div>
+        </form>
+        <form action="/sort">
           <div class="input-group mx-2">
-            <select class="form-control" id="sortingSelection">
+            <select class="form-control" name="sortMethods" onChange='if(this.value != 0) { this.form.submit()}'>
               <option selected>Sort by...</option>
               <option value="1">A -> Z</option>
               <option value="2">Z -> A</option>
@@ -30,8 +32,8 @@
               <option value="4">地區</option>
             </select>
           </div>
-        </div>  
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>
@@ -40,7 +42,7 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
+      <div class="card-columns">    
         {{#each restaurants}}
           <a href="./restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
