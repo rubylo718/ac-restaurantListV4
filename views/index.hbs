@@ -3,36 +3,39 @@
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <h4 class="mb-2">尋找餐廳：</h4>
-      <div class="d-flex align-items-center">
-        <form action="/search">
-          <div class="input-group">
-            <input
-              type="text"
-              name="keyword"
-              class="form-control"
-              placeholder="輸入餐廳、分類"
-              aria-label="Restaurant Name..."
-              value="{{keyword}}"
-              aria-describedby="search-button"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-major" type="submit" id="search-button"><i
-                  class="fas fa-search"
-                ></i></button>
-            </div>
+      <div class="row">
+        <div class="col-6">
+          <form action="/search">
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="keyword"
+                  class="form-control"
+                  placeholder="輸入餐廳、分類"
+                  aria-label="Restaurant Name..."
+                  value="{{keyword}}"
+                  aria-describedby="search-button"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-major" type="submit" id="search-button"><i
+                    class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-        <form action="/sort">
-          <div class="input-group mx-2">
-            <select class="form-control" name="sortMethods" onChange='if(this.value != 0) { this.form.submit()}'>
-              <option selected>Sort by...</option>
-              <option value="1">A -> Z</option>
-              <option value="2">Z -> A</option>
-              <option value="3">類別</option>
-              <option value="4">地區</option>
-            </select>
+          <div class="col-6">
+            <form action="/sort">
+              <div class="input-group">
+                <select class="form-control" name="sortMethods" id="sortMethods" onChange='if(this.value != 0) { this.form.submit()}'>
+                  <option selected>Sort by...</option>
+                  <option value="1">A -> Z</option>
+                  <option value="2">Z -> A</option>
+                  <option value="3">類別</option>
+                  <option value="4">地區</option>
+                </select>
+              </div>
+            </form>
           </div>
-        </form>
       </div>
     </div>
   </div>
@@ -40,10 +43,10 @@
 
 {{! restaurant list }}
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">    
-        {{#each restaurants}}
+    <div class="col-md col-12 mx-auto">
+      <div class="row row-cols-3">
+      {{#each restaurants}}
+        <div class="col-sm-4">
           <a href="./restaurants/{{this._id}}" class="text-secondary">
             <div class="card mb-3">
               <img class="card-img-top" src="{{this.image}}" alt="photo" />
@@ -69,8 +72,8 @@
               </div>
             </div>
           </a>
-        {{/each}}
-      </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 </div>

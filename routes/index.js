@@ -1,8 +1,8 @@
 import express from 'express'
-const router = express.Router()
 
 import { homeRoute } from './modules/home.js'
 import { restaurantRoute } from './modules/restaurants.js'
+const router = express.Router()
 router.use('/', homeRoute)
 router.use('/restaurants', restaurantRoute)
 
