@@ -5,7 +5,7 @@ This an assignment of AlphaCamp Term 2-3 week 3.
 
 ## Target
 
-Continue improving the restaurant list:
+Continue improving based on the previous work (ac-restaurantListV2)
 
 1. New function adding: sorting
 
@@ -21,7 +21,7 @@ User can sort the restaurants by name, category, and location.
 
 User can click the photo to get the detailed information.
 
-User can add, edit, delete the restaurant information.
+User can add, edit, delete the information.
 
 ## Getting Started
 
@@ -56,4 +56,4 @@ Ruby Lo
 
 ## Submitted Date
 
-Apr. 15, 2022
+Apr. 16, 2022
