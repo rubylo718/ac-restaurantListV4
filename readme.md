@@ -37,6 +37,7 @@ Run the seeder:
 npm run seed
 ```
 
+Mongoose environment variable name: MONGODB_URI_RES
 
 ## Packages
 
