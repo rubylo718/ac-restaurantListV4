@@ -23,7 +23,7 @@ router.get('/sort', (req, res) => {
   Restaurants.find()
     .lean()
     .sort(method)
-    .then(restaurants => res.render('index', { restaurants }))
+    .then(restaurants => res.render('index', { restaurants, sortMethod }))
     .catch(error => console.log(error))
 })
 

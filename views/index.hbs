@@ -27,11 +27,11 @@
             <form action="/sort">
               <div class="input-group">
                 <select class="form-control" name="sortMethods" id="sortMethods" onChange='if(this.value != 0) { this.form.submit()}'>
-                  <option selected>Sort by...</option>
-                  <option value="1">A -> Z</option>
-                  <option value="2">Z -> A</option>
-                  <option value="3">類別</option>
-                  <option value="4">地區</option>
+                  <option value="">Sort by...</option>
+                  <option value="1" {{#is sortMethod "1"}} selected {{/is}}>A -> Z</option>
+                  <option value="2" {{#is sortMethod "2"}} selected {{/is}}>Z -> A</option>
+                  <option value="3" {{#is sortMethod "3"}} selected {{/is}}>類別</option>
+                  <option value="4" {{#is sortMethod "4"}} selected {{/is}}>地區</option>
                 </select>
               </div>
             </form>

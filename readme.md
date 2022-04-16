@@ -1,4 +1,4 @@
-# Restaurant List
+# Restaurant List V3
 
 This an assignment of AlphaCamp Term 2-3 week 3.
 
@@ -45,6 +45,8 @@ body-parser: 1.20.0
 express: 4.17.3
 
 express-handlebars: 6.0.5
+
+handlebars-helpers: 0.9.8
 
 method-override: 3.0.0
 
