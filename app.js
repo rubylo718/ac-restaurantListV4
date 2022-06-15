@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import exphbs from 'express-handlebars'
 import methodOverride from 'method-override'
@@ -6,7 +7,7 @@ import { indexRoute } from './routes/index.js'
 import * as mongoose from './config/mongoose.js'
 
 const app = express()
-const port = 3000
+const port = process.env.PORT
 const multihelpers = helpers()
 
 app.engine('hbs', exphbs.engine({ helpers: multihelpers, defaultLayout: 'main', extname: 'hbs' }))
