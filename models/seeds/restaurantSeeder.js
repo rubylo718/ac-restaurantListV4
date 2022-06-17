@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import Restaurants from '../restaurants.js'
 import db from '../../config/mongoose.js'
 
@@ -8,5 +9,8 @@ const restaurantList = require('../../restaurant.json') // use the require metho
 db.once('open', () => {
   console.log('mongodb connected! run the seeder')
   Restaurants.create(restaurantList.results)
-  console.log('done')
+    .then(() => {
+      console.log('done')
+      process.exit()
+    })
 })
