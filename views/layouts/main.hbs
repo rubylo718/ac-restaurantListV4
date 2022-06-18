@@ -23,9 +23,17 @@
             class="d-inline-block align-top"
             alt="Restaurant List"
           />
-          Restaurant List
+          {{#if isAuthenticated}} Welcome, {{ user.name }} !
+          {{else}}
+          Restaurant List 
+          {{/if}}
         </a>
-        <a class="btn btn-warning" href="./restaurants/new" role="button">Create</a>
+        {{#if isAuthenticated}}
+        <div>
+          <a class="btn btn-info" href="./restaurants/new" role="button">Create New Restaurant</a>
+          <a class="btn btn-warning" href="./users/logout" role="button">Logout</a>
+        </div>
+        {{/if}}
       </div>
     </nav>
 
