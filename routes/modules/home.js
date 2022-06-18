@@ -3,7 +3,8 @@ import Restaurants from '../../models/restaurants.js'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  Restaurants.find()
+  const userId = req.user._id
+  Restaurants.find({ userId })
     .lean()
     .sort({ _id: 'asc' })
     .then(restaurants => res.render('index', { restaurants }))
