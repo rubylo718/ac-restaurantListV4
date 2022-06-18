@@ -1,10 +1,17 @@
 import express from 'express'
 import User from '../../models/users.js'
+import passport from 'passport'
 const router = express.Router()
 
 router.get('/login', (req, res) => {
   res.render('login')
 })
+
+router.post('/login', 
+  passport.authenticate('local', {
+    seccessRedirect: '/',
+    failureRedirect: '/users/login'
+  }))
 
 router.get('/register', (req, res) => {
   res.render('register')
