@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import session from 'express-session'
 import exphbs from 'express-handlebars'
+import bodyParser from 'body-parser'
 import methodOverride from 'method-override'
 import helpers from 'handlebars-helpers'
 import { indexRoute } from './routes/index.js'
@@ -16,15 +17,21 @@ app.engine('hbs', exphbs.engine({ helpers: multihelpers, defaultLayout: 'main', 
 app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false, 
+  resave: false,
   saveUninitialized: true
 }))
 
 usePassport(app)
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 
 app.use(indexRoute)
 

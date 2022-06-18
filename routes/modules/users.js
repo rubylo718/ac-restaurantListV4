@@ -7,9 +7,9 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', 
+router.post('/login',
   passport.authenticate('local', {
-    seccessRedirect: '/',
+    successRedirect: '/',
     failureRedirect: '/users/login'
   }))
 
@@ -24,11 +24,16 @@ router.post('/register', async (req, res) => {
     console.log('this email is existed')
     res.redirect('register')
   }
-  
+
   const newUser = new User({ name, email, password })
   newUser.save()
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
+})
+
+router.get('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/users/login')
 })
 
 export { router as usersRoute }

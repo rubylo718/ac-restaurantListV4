@@ -1,5 +1,5 @@
 import passport from 'passport'
-import { Strategy as LocalStrategy }  from 'passport-local'
+import { Strategy as LocalStrategy } from 'passport-local'
 import User from '../models/users.js'
 
 export default app => {
@@ -11,7 +11,7 @@ export default app => {
       .then(user => {
         if (!user) {
           return done(null, false, { message: 'This email is not registered' })
-        }        
+        }
         if (user.password !== password) {
           return done(null, false, { message: 'Email or Password incorrect' })
         }
