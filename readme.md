@@ -1,15 +1,19 @@
-# Restaurant List V3
+# Restaurant List V4
 
-This an assignment of AlphaCamp Term 2-3 week 3.
+This an assignment of AlphaCamp Term 3 week 1.
 
 
 ## Target
 
-Continue improving based on the previous work (ac-restaurantListV2)
+Continue improving based on the previous work (ac-restaurantListV3)
 
-1. New function adding: sorting
+New function added: User authentication
 
-2. Code refactoring: RESTful API, routes, and mongoose connection
+1. User can register an account or login via Facebook.
+
+2. Using bcrypt to encrpyt user's password.
+
+3. Using flash message to the user while necessary.
 
 ## User Story
 
@@ -28,30 +32,22 @@ User can add, edit, delete the information.
 Run the App:
 
 ```
-npm run dev
+npm run dev // with nodemon
+or
+node app.js // without nodemon
 ```
 
-Run the seeder:
-
-```
-npm run seed
-```
-
-Mongoose environment variable name: MONGODB_URI_RES
-
-## Packages
-
-body-parser: 1.20.0
+## Main Packages
 
 express: 4.17.3
 
 express-handlebars: 6.0.5
 
-handlebars-helpers: 0.9.8
-
-method-override: 3.0.0
-
 mongoose: 6.2.10
+
+passport: 0.4.1
+
+passport-facebook: 3.0.0
 
 ## Author
 
@@ -59,4 +55,4 @@ Ruby Lo
 
 ## Submitted Date
 
-Apr. 16, 2022
+Jun, 19, 2022
