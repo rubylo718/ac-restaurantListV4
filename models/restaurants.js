@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
-const Schema = mongoose.Schema
-const restaurantSchema = new Schema({
+const restaurantSchema = new mongoose.Schema({
   name: { type: String, required: true },
   name_en: { type: String, required: true },
   category: { type: String, required: true },
@@ -11,7 +10,7 @@ const restaurantSchema = new Schema({
   rating: { type: Number, required: true },
   description: { type: String, required: true },
   userId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     index: true,
   }

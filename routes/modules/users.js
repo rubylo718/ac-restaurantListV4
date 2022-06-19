@@ -1,7 +1,9 @@
 import express from 'express'
+const router = express.Router()
 import User from '../../models/users.js'
 import passport from 'passport'
-const router = express.Router()
+import bcrypt from 'bcryptjs'
+const saltRounds = 10
 
 router.get('/login', (req, res) => {
   res.render('login')
@@ -37,11 +39,17 @@ router.post('/register', async (req, res) => {
   if (errors.length) {
     return res.render('register', { errorItem, errors, name, email, password, confirmpassword })
   }
-
-  const newUser = new User({ name, email, password })
-  newUser.save()
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  
+  const hash = await bcrypt.hash(password, saltRounds)
+  const newUser = new User({ name, email, password: hash })
+  try{
+    await newUser.save()
+    req.flash('success_msg', 'Register successfully.')
+    res.redirect('/auth/login')
+  } catch (err) {
+    req.flash('error_msg', 'Something went wrong.')
+    res.redirect('auth/register')
+  }
 })
 
 router.get('/logout', (req, res) => {
