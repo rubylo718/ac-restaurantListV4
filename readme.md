@@ -37,6 +37,14 @@ or
 node app.js // without nodemon
 ```
 
+Run the seeder:
+
+```
+npm run seed // with nodemon
+or
+node models/seeds/restaurantSeeder.js // without nodemon
+```
+
 ## Main Packages
 
 express: 4.17.3
