@@ -8,8 +8,8 @@ router.get('/new', (req, res) => {
 })
 // add new restaurant: POST '/restaurants and redirect to '/'
 router.post('/', (req, res) => {
-  const userId = req.user._id 
-  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body 
+  const userId = req.user._id
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   const newRestaurant = new Restaurants({
     name, name_en, category, image, location, phone, google_map, rating, description, userId
   })

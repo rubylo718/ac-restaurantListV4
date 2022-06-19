@@ -1,8 +1,8 @@
 import express from 'express'
-const router = express.Router()
 import User from '../../models/users.js'
 import passport from 'passport'
 import bcrypt from 'bcryptjs'
+const router = express.Router()
 const saltRounds = 10
 
 router.get('/login', (req, res) => {
@@ -25,24 +25,24 @@ router.post('/register', async (req, res) => {
   const errorItem = []
   const emailExist = await User.findOne({ email })
   if (emailExist) {
-    errors.push({ message: 'This email has been registered.'})
+    errors.push({ message: 'This email has been registered.' })
   }
   if (!email || !password || !confirmpassword) {
     errors.push({ message: 'Please fill in the required infomation.' })
-    if (!email) {errorItem.push('errorEmail')}
-    if (!password) {errorItem.push('errorPwd')}
-    if (!confirmpassword) {errorItem.push('errorConPwd')}
+    if (!email) { errorItem.push('errorEmail') }
+    if (!password) { errorItem.push('errorPwd') }
+    if (!confirmpassword) { errorItem.push('errorConPwd') }
   }
   if (password !== confirmpassword) {
-    errors.push({ message: 'The password and confirm password are not the same. Please check.'})
+    errors.push({ message: 'The password and confirm password are not the same. Please check.' })
   }
   if (errors.length) {
     return res.render('register', { errorItem, errors, name, email, password, confirmpassword })
   }
-  
+
   const hash = await bcrypt.hash(password, saltRounds)
   const newUser = new User({ name, email, password: hash })
-  try{
+  try {
     await newUser.save()
     req.flash('success_msg', 'Register successfully.')
     res.redirect('/auth/login')

@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  fbID: {
+    type: String
+  },
   password: {
     type: String,
     required: true
