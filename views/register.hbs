@@ -2,14 +2,11 @@
   <div class="col-md-6 m-auto">
     <div class="card card-body">
       <h1 class="text-center mt-3">Register</h1>
-      {{!-- {{> message}} --}}
+      {{> message}}
       <form action="/users/register" method="POST">
         <div class='mb-3'>
           <label for="name">Name</label>
-          <input 
-          {{#contains errorItem "errorName"}}style="border: 2px solid red"{{/contains}} 
-          style=
-          type="text" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{ name }}">
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{ name }}">
         </div>
         <div class='mb-3'>
           <label for="email">Email</label>

@@ -19,10 +19,23 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   const { name, email, password, confirmpassword } = req.body
+  const errors = []
+  const errorItem = []
   const emailExist = await User.findOne({ email })
   if (emailExist) {
-    console.log('this email is existed')
-    res.redirect('register')
+    errors.push({ message: 'This email has been registered.'})
+  }
+  if (!email || !password || !confirmpassword) {
+    errors.push({ message: 'Please fill in the required infomation.' })
+    if (!email) {errorItem.push('errorEmail')}
+    if (!password) {errorItem.push('errorPwd')}
+    if (!confirmpassword) {errorItem.push('errorConPwd')}
+  }
+  if (password !== confirmpassword) {
+    errors.push({ message: 'The password and confirm password are not the same. Please check.'})
+  }
+  if (errors.length) {
+    return res.render('register', { errorItem, errors, name, email, password, confirmpassword })
   }
 
   const newUser = new User({ name, email, password })
@@ -33,6 +46,7 @@ router.post('/register', async (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logOut()
+  req.flash('success_msg', 'Logout successfully.')
   res.redirect('/users/login')
 })
 
