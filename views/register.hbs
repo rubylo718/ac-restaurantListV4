@@ -9,19 +9,19 @@
           <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{ name }}">
         </div>
         <div class='mb-3'>
-          <label for="email">Email</label>
+          <label for="email">Email (Required)</label>
           <input 
           {{#contains errorItem "errorEmail"}}style="border: 2px solid red"{{/contains}} 
           type="email" id="email" name="email" class="form-control" placeholder="Enter Email" value="{{ email }}">
         </div>
         <div class="mb-3">
-          <label for="password">Password</label>
+          <label for="password">Password (Required)</label>
           <input 
           {{#contains errorItem "errorPwd"}}style="border: 2px solid red"{{/contains}} 
           type="password" id="password" name="password" class="form-control" placeholder="Enter Password" value="{{ password }}">
         </div>
         <div class="mb-3">
-          <label for="confirmPassword">Confirm Password</label>
+          <label for="confirmPassword">Confirm Password (Required)</label>
           <input 
           {{#contains errorItem "errorConPwd"}}style="border: 2px solid red"{{/contains}} 
           type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirm Password" value="{{ confirmpassword }}">

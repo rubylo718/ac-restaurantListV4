@@ -12,12 +12,12 @@ export default app => {
   passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     const foundUser = await User.findOne({ email })
     if (!foundUser) {
-      return done(null, false, { message: 'Email or Password incorrect' })
+      return done(null, false, { message: 'Email account not existed.' })
     } else {
       const isMatch = await bcrypt.compare(password, foundUser.password)
       try {
         if (!isMatch) {
-          return done(null, false, { message: 'Email or Password incorrect' })
+          return done(null, false, { message: 'Password incorrect' })
         } else {
           return done(null, foundUser)
         }
@@ -35,7 +35,7 @@ export default app => {
   },
   async (accessToken, refreshToken, profile, done) => {
     const { name, email, id } = profile._json
-    const foundUser = await User.findOne({ fbID: id })
+    const foundUser = await User.findOne({ email })
     if (foundUser) {
       return done(null, foundUser)
     } else {

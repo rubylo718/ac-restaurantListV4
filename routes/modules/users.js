@@ -12,7 +12,8 @@ router.get('/login', (req, res) => {
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login'
+    failureRedirect: '/users/login',
+    failureFlash: true
   }))
 
 router.get('/register', (req, res) => {
@@ -34,7 +35,7 @@ router.post('/register', async (req, res) => {
     if (!confirmpassword) { errorItem.push('errorConPwd') }
   }
   if (password !== confirmpassword) {
-    errors.push({ message: 'The password and confirm password are not the same. Please check.' })
+    errors.push({ message: 'The confirm password is not match with the password. Please check.' })
   }
   if (errors.length) {
     return res.render('register', { errorItem, errors, name, email, password, confirmpassword })
@@ -47,7 +48,7 @@ router.post('/register', async (req, res) => {
     req.flash('success_msg', 'Register successfully.')
     res.redirect('/auth/login')
   } catch (err) {
-    req.flash('error_msg', 'Something went wrong.')
+    req.flash('warning_msg', 'Something went wrong.')
     res.redirect('auth/register')
   }
 })
