@@ -1,6 +1,6 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
-import { Strategy as FacebooksStrategy } from 'passport-facebook'
+import { Strategy as FacebookStrategy } from 'passport-facebook'
 import User from '../models/users.js'
 import bcrypt from 'bcryptjs'
 const saltRounds = 10
@@ -27,7 +27,7 @@ export default app => {
     }
   }))
 
-  passport.use(new FacebooksStrategy({
+  passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_ID,
     clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK,

@@ -21,8 +21,8 @@ router.post('/', (req, res) => {
 // view detail of a certain restaurant
 router.get('/:id', (req, res) => {
   const userId = req.user._id
-  const id = req.params.id
-  return Restaurants.findOne({ id, userId })
+  const _id = req.params.id
+  return Restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -31,24 +31,27 @@ router.get('/:id', (req, res) => {
 // go to edit page
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
-  const id = req.params.id
-  return Restaurants.findOne({ id, userId })
+  const _id = req.params.id
+  return Restaurants.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 // update detail info after edit
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurants.findByIdAndUpdate(id, req.body)
+  const _id = req.params.id
+  return Restaurants.findByIdAndUpdate(_id, req.body, { runValidators: true })
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.redirect(`/restaurants/${_id}/edit`)
+    })
 })
 
 // delete a certain restaurant
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Restaurants.findByIdAndDelete(id, req.body)
+  const _id = req.params.id
+  return Restaurants.findByIdAndDelete(_id, req.body)
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })

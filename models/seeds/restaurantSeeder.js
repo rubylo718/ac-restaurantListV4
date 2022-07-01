@@ -9,8 +9,8 @@ const require = createRequire(import.meta.url) // construct the require method
 const restaurantList = require('../../restaurant.json').results // use the require method
 
 const SEED_USERS = [
-  { email: 'user1@example.com', password: '12345678', ownedRestarantId: [1, 2, 3] },
-  { email: 'user2@example.com', password: '12345678', ownedRestarantId: [4, 5, 6] }
+  { email: 'user1@example.com', password: '12345678', ownedRestaurantId: [1, 2, 3] },
+  { email: 'user2@example.com', password: '12345678', ownedRestaurantId: [4, 5, 6] }
 ]
 
 db.once('open', () => {
@@ -24,7 +24,7 @@ db.once('open', () => {
         const userId = newUser._id
         return Promise
           .all(restaurantList.map(restaurant => {
-            if (seedUser.ownedRestarantId.includes(restaurant.id)) {
+            if (seedUser.ownedRestaurantId.includes(restaurant.id)) {
               restaurant.userId = userId
               return Restaurants.create(restaurant)
             }

@@ -12,7 +12,7 @@
                 餐廳名稱（中文）
               </label>
               <div class="col-md-8">
-                <input type="string" name="name" class="form-control" id="name" value="{{restaurant.name}}">
+                <input type="string" name="name" class="form-control" id="name" value="{{restaurant.name}}" required>
               </div>
             </div>
 
@@ -21,7 +21,7 @@
                 餐廳名稱（英文）
               </label>
               <div class="col-md-8">
-                <input type="string" name="name_en" class="form-control" id="name_en" value="{{restaurant.name_en}}">
+                <input type="string" name="name_en" class="form-control" id="name_en" value="{{restaurant.name_en}}" required>
               </div>
             </div>
             
@@ -30,7 +30,7 @@
                 類型
               </label>
               <div class="col-md-8">
-                <input type="string" name="category" class="form-control" id="category" list="category-list" value="{{restaurant.category}}">
+                <input type="string" name="category" class="form-control" id="category" list="category-list" value="{{restaurant.category}}" required>
                 <datalist id="category-list">
                   <option>美式</option>
                   <option>日本料理</option>
@@ -48,7 +48,7 @@
                 照片
               </label>
               <div class="col-md-8">
-                <textarea type="string" name="image" class="form-control" id="image" rows="2">{{restaurant.image}}</textarea>
+                <textarea type="string" name="image" class="form-control" id="image" rows="2" required>{{restaurant.image}}</textarea>
               </div>
             </div>
 
@@ -57,7 +57,7 @@
                 地址
               </label>
               <div class="col-md-8">
-                <input type="string" name="location" class="form-control" id="location" value="{{restaurant.location}}">
+                <input type="string" name="location" class="form-control" id="location" value="{{restaurant.location}}" required>
               </div>
             </div>
 
@@ -66,7 +66,7 @@
                 電話
               </label>
               <div class="col-md-8">
-                <input type="string" name="phone" class="form-control" id="phone" value="{{restaurant.phone}}">
+                <input type="string" name="phone" class="form-control" id="phone" value="{{restaurant.phone}}" required>
               </div>
             </div>
 
@@ -75,7 +75,7 @@
                 Google地圖
               </label>
               <div class="col-md-8">
-                <input type="string" name="google_map" class="form-control" id="google_map" value="{{restaurant.google_map}}">
+                <input type="string" name="google_map" class="form-control" id="google_map" value="{{restaurant.google_map}}" required>
               </div>
             </div>
 
@@ -84,7 +84,7 @@
                 評分
               </label>
               <div class="col-md-8">
-                <input type="number" name="rating" class="form-control" id="rating" min="0" max="5" step="0.1" value="{{restaurant.rating}}">
+                <input type="number" name="rating" class="form-control" id="rating" min="0" max="5" step="0.1" value="{{restaurant.rating}}" required>
                 <small class="text-muted form-text">最低0分，最高5分，可接受一位小數</small> 
               </div>
             </div>
@@ -94,7 +94,7 @@
                 簡介
               </label>
               <div class="col-md-8">
-                <textarea type="string" name="description" class="form-control" id="description" rows="5">{{restaurant.description}}</textarea>
+                <textarea type="string" name="description" class="form-control" id="description" rows="5" required>{{restaurant.description}}</textarea>
               </div>
             </div>
 

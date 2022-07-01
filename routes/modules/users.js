@@ -21,24 +21,24 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-  const { name, email, password, confirmpassword } = req.body
+  const { name, email, password, confirmPassword } = req.body
   const errors = []
   const errorItem = []
   const emailExist = await User.findOne({ email })
   if (emailExist) {
     errors.push({ message: 'This email has been registered.' })
   }
-  if (!email || !password || !confirmpassword) {
-    errors.push({ message: 'Please fill in the required infomation.' })
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: 'Please fill in the required information.' })
     if (!email) { errorItem.push('errorEmail') }
     if (!password) { errorItem.push('errorPwd') }
-    if (!confirmpassword) { errorItem.push('errorConPwd') }
+    if (!confirmPassword) { errorItem.push('errorConPwd') }
   }
-  if (password !== confirmpassword) {
+  if (password !== confirmPassword) {
     errors.push({ message: 'The confirm password is not match with the password. Please check.' })
   }
   if (errors.length) {
-    return res.render('register', { errorItem, errors, name, email, password, confirmpassword })
+    return res.render('register', { errorItem, errors, name, email, password, confirmPassword })
   }
 
   const hash = await bcrypt.hash(password, saltRounds)
